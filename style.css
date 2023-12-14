@@ -4,7 +4,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .rectangle {
@@ -14,7 +14,7 @@ body {
     flex-shrink: 0;
     border-radius: 10px;
     background: #FFF;
-    box-shadow: 2px 4px 9.9px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 4px 9.9px 0px rgba(0, 0, 0, 0.5);
 }
 
 .download-button {
@@ -33,38 +33,58 @@ body {
 .download-button:hover {
     background-color: #A88EF0;
 }
-/* .download-button:default {
-    background-color: #6346B4;
-} */
 
 .download-button:active {
     background-color: #311F63;
 }
 
-.content-rectangle{
-    color: #000;
+/* Контент внутри кнопки */
+.content-button {
+    color: #FFF;
+    font-size: 16px;
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
+/* Базовый класс для общих стилей контента */
+.content-base {
     text-align: center;
     font-family: 'Noto Sans', serif;
-    font-size: 24px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+/* Класс для контента внутри обычного прямоугольника */
+.content-rectangle {
+    color: #000;
+    font-size: 24px;
     margin-top: 99px;
     margin-left: 230px;
     margin-right: 231px;
     margin-bottom: 235px;
+    
 }
 
-.content-button {
-    color: #FFF;
-    text-align: center;
-    font-family: 'Noto Sans', serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin-top: 13px;
-    /* margin-right: 75px; */
-    margin-bottom: 13px;
-    /* margin-left: 76px; */
+/* Ошибка */
+.rectangle-error {
+    position: absolute; 
+    top: 35px;
+    bottom: 900px; 
+    width: 720px;
+    height: 89px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FF6565;
+    box-shadow: 2px 4px 9.9px 0px rgba(0, 0, 0, 0.25);
 }
+
+/* Класс для контента внутри прямоугольника с ошибкой */
+.content-error {
+    color: #FFF;
+    font-size: 20px; 
+    margin-top: 33px; 
+    margin-bottom: 290px; 
+}
+
+

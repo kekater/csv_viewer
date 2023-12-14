@@ -3,11 +3,12 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 0; 
-    background: rgba(0, 0, 0, 0.5); 
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .rectangle {
+    position: relative; 
     width: 823px;
     height: 367px;
     flex-shrink: 0;
@@ -16,21 +17,54 @@ body {
     box-shadow: 2px 4px 9.9px 0px rgba(0, 0, 0, 0.25);
 }
 
-#download-button{
+.download-button {
+    position: absolute; 
     width: 274px;
     height: 48px;
-    flex-shrink: 0;
     border-radius: 5px;
     background: #6346B4;
-   
+    top: 207px; 
+    right: 275px; 
+    bottom: 112px; 
+    left: 274px;
+    border: none;
 }
 
-#text-button{
+.download-button:hover {
+    background-color: #A88EF0;
+}
+/* .download-button:default {
+    background-color: #6346B4;
+} */
+
+.download-button:active {
+    background-color: #311F63;
+}
+
+.content-rectangle{
+    color: #000;
+    text-align: center;
+    font-family: 'Noto Sans', serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 99px;
+    margin-left: 230px;
+    margin-right: 231px;
+    margin-bottom: 235px;
+}
+
+.content-button {
     color: #FFF;
     text-align: center;
-    font-family: Noto Sans;
+    font-family: 'Noto Sans', serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-top: 13px;
+    /* margin-right: 75px; */
+    margin-bottom: 13px;
+    /* margin-left: 76px; */
 }

@@ -19,15 +19,27 @@ body {
 
 .download-button {
     position: absolute; 
-    width: 274px;
-    height: 48px;
     border-radius: 5px;
     background: #6346B4;
+    border: none;
+}
+
+.button-home {
+    width: 274px;
+    height: 48px;
     top: 207px; 
     right: 275px; 
     bottom: 112px; 
     left: 274px;
-    border: none;
+}
+
+.button-table {
+    position: absolute; 
+    width: 164px;
+    height: 36px;
+    flex-shrink: 0;
+    top: 1.7%;
+    right: 1%;
 }
 
 .download-button:hover {
@@ -46,6 +58,13 @@ body {
     margin-bottom: 13px;
 }
 
+.content-button-table {
+    color: #FFF;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* Базовый класс для общих стилей контента */
 .content-base {
     text-align: center;
@@ -55,7 +74,7 @@ body {
     line-height: normal;
 }
 
-/* Класс для контента внутри обычного прямоугольника */
+/* Класс для контента внутри прямоугольника */
 .content-rectangle {
     color: #000;
     font-size: 24px;
@@ -63,7 +82,6 @@ body {
     margin-left: 230px;
     margin-right: 231px;
     margin-bottom: 235px;
-    
 }
 
 /* Ошибка */
@@ -85,6 +103,87 @@ body {
     font-size: 20px; 
     margin-top: 33px; 
     margin-bottom: 290px; 
+}
+
+.table {
+    position: absolute;
+    left: 33px;
+    top: 73px;
+    border-radius: 10px 0px 0px 0px;
+    background: #FFF;
+    width: calc(100% - 33px);
+    /* height: calc(100% - 73px); */
+}
+
+th, td {
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    height: 51px;
+    position: relative;
+    text-align: left;
+    padding-left: 35px; 
+}
+
+th::before, td::before {
+    content: '';
+    background: #C0C0C0;
+    width: 1px;
+    height: 51px;
+    position: absolute;
+    left: -1px;
+    top: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead th, tfoot tr {
+    border-bottom: 2px solid #898989;
+}
+
+tbody tr {
+    border-bottom: 1px solid #898989;
+}
+
+tr:hover {
+    background-color: #6346B440;
+}
+
+.drag-screen{
+    margin-top: 158px;
+    margin-left: 304px;
+    margin-right: 306px;
+    margin-bottom: 143px;
+    color: #AEAEAE;
+    text-align: center;
+    font-size: 24px;
+}
+
+#drag-screen.rectangle {
+    position: relative; 
+      width: 823px;
+      height: 367px;
+      margin: 158px auto 143px;
+      border-radius: 10px;
+      background: #FFF;
+      box-shadow: 2px 4px 9.9px 0px rgba(0, 0, 0, 0.25);
+}
+
+#drag-screen.rectangle::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 5px dashed #AEAEAE;
+    border-radius: 10px;
 }
 
 

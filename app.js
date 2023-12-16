@@ -6,13 +6,16 @@ document.addEventListener('DOMContentLoaded', function () {
   let reloadButton = document.getElementById('button-table');
   let dragScreen = document.getElementById('drag-screen');
 
-  const savedData = localStorage.getItem('csvData');
+  let savedData = localStorage.getItem('csvData');
  
   if (savedData) {
       showTableScreen();
       const parsedData = JSON.parse(savedData);
       renderTable(parsedData);
-  } else {
+  } 
+  
+  
+  // else {
 
       fileInputButton.addEventListener('click', function () {
           // Создаем элемент input для выбора файла
@@ -73,10 +76,11 @@ document.addEventListener('DOMContentLoaded', function () {
       dragScreen.addEventListener('drop', handleDrop);
       viewTableScreen.addEventListener('drop', handleDrop);
 
-    }
+    // //////////}
 
     // Добавляем слушатель события "click" на кнопке "Загрузить новый файл"
     reloadButton.addEventListener('click', function () {
+      localStorage.getItem('csvData');
       localStorage.removeItem('csvData');
       showUploadScreen();
     });
@@ -111,27 +115,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     return data;
   }
-
-
-  // function renderTable(data) {
-  //   tableBody.innerHTML = '';
-  //   // Проходим по каждому объекту в массиве данных
-  //   data.forEach(item => {
-  //     // Создаем строку для каждого объекта
-  //     const row = document.createElement('tr');
-  //     // Проходим по каждому свойству объекта
-  //     for (const key in item) {
-  //       if (item.hasOwnProperty(key)) {
-  //         // Создаем ячейку для каждого свойства и добавляем в строку
-  //         const cell = document.createElement('td');
-  //         cell.textContent = item[key];
-  //         row.appendChild(cell);
-  //       }
-  //     }
-  //   // Добавляем строку в tbody
-  //     tableBody.appendChild(row);
-  //   });
-  // }
   
   function renderTable(data) {
     tableBody.innerHTML = '';

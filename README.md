@@ -1,3 +1,25 @@
+# Project Description: CSV File Viewer v0.2
+
+## Overview
+CSV File Viewer is a web application that enables users to view the contents of CSV (Comma-Separated Values) files in a user-friendly table format. This version (v0.2) introduces significant improvements to the initial release.
+
+## Features in v0.2
+In this version, the following enhancements have been made:
+
+### Character Encoding Detection
+The application now dynamically detects the character encoding of uploaded CSV files. It utilizes the `jschardet` library to identify the correct encoding, ensuring accurate parsing of the file contents.
+
+### Improved Data Parsing
+With the introduction of character encoding detection, the script intelligently reads the CSV file based on the identified encoding. This enhancement ensures proper rendering of content in the table, regardless of the file's encoding.
+
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- [jschardet](https://github.com/aadsm/jschardet) for character encoding detection
+
+
+
 # Project Description: CSV File Viewer
 
 ## Single Page Application

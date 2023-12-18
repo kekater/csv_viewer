@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "jschardet": "^3.0.0"
+  }
+}

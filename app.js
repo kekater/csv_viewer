@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
   let uploadScreen = document.getElementById('upload-screen');
   let errorScreen = document.getElementById('error');
@@ -14,25 +15,53 @@ document.addEventListener('DOMContentLoaded', function () {
       renderTable(parsedData);
   } 
   
-  
-  // else {
-
       fileInputButton.addEventListener('click', function () {
           // Создаем элемент input для выбора файла
           let fileInput = document.createElement('input');
           fileInput.type = 'file';
-          fileInput.addEventListener('change', function (event) {
+          fileInput.addEventListener('change', async function (event) {
               let selectedFile = event.target.files[0];
               if (selectedFile && selectedFile.name.toLowerCase().endsWith('.csv')) {
+                try {
+                  // Определение кодировки файла
+                  let encoding = await getEncodingAsync(selectedFile);
+                  
                   // Чтение файла и обработка данных
-                  handleCSVFile(selectedFile);
-              } else {
+                  handleCSVFile(selectedFile, encoding);
+              } catch (error) {
+                  // console.error('Error while getting encoding:', error);
                   errorScreen.style.display = 'block';
               }
-          });
+          } else {
+              errorScreen.style.display = 'block';
+          }
+      });
           fileInput.click();
           errorScreen.style.display = 'none';
       });
+
+      async function getEncodingAsync(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const fileContent = e.target.result;
+                    
+                    // Определение кодировки строки
+                    let result = jschardet.detect(fileContent);
+                    
+                    // Возвращаем кодировку
+                    resolve(result.encoding);
+                } catch (error) {
+                    // Если произошла ошибка, вызываем reject
+                    reject(error);
+                }
+            };
+            
+            // Читаем не в виде текста, чтобы не конвертировать автоматически
+            reader.readAsBinaryString(file);
+        });
+    }
 
       function handleDragOver(event) {
         event.preventDefault();
@@ -41,34 +70,43 @@ document.addEventListener('DOMContentLoaded', function () {
         errorScreen.style.display = 'none';
       }
       
-      function handleDrop(event) {
+      async function handleDrop(event) {
         event.preventDefault();
         const files = event.dataTransfer.files;
-          if (files.length === 1) {
+    
+        if (files.length === 1) {
             const selectedFile = files[0];
             if (selectedFile.name.toLowerCase().endsWith('.csv')) {
-              handleCSVFile(selectedFile);
+                try {
+                    // Определение кодировки файла
+                    let encoding = await getEncodingAsync(selectedFile);
+    
+                    // Чтение файла и обработка данных
+                    await handleCSVFile(selectedFile, encoding);
+                } catch (error) {
+                    console.error('Error while processing file:', error);
+                    errorScreen.style.display = 'block';
+                }
             } else {
-              errorScreen.style.display = 'block';
+                errorScreen.style.display = 'block';
             }
-        } else {
-          errorScreen.style.display = 'block';
         }
-      }
+    }
 
-      function handleCSVFile(file) {
+      function handleCSVFile(file, encoding) {
         const reader = new FileReader();
         reader.onload = function (e) {
-          const fileContent = e.target.result;
-          // Обработка и сохранение данных в браузере
-          const parsedData = processCSV(fileContent);
-          localStorage.setItem('csvData', JSON.stringify(parsedData));
-          showTableScreen();
-          // Отображение данных в таблице
-          renderTable(parsedData);
+            const fileContent = e.target.result;
+            // Обработка и сохранение данных в браузере
+            const parsedData = processCSV(fileContent);
+            localStorage.setItem('csvData', JSON.stringify(parsedData));
+            showTableScreen();
+            // Отображение данных в таблице
+            renderTable(parsedData);
         };
-        reader.readAsText(file, 'CP1251');
-      }
+    
+        reader.readAsText(file, encoding);
+      }    
     
       uploadScreen.addEventListener('dragover', handleDragOver);
       uploadScreen.addEventListener('drop', handleDrop);
